@@ -1,9 +1,10 @@
 import React from 'react';
 import LearningChart from '../components/Statistics/LearningChart';
+import LearningAnalytics from '../components/Statistics/LearningAnalytics';
 import useLearningProgress from '../hooks/useLearningProgress';
 import useRewards from '../hooks/useRewards';
-import styles from './Statistics.module.css';
 import { calculateLevel } from '../utils/levelUtils';
+import styles from './Statistics.module.css';
 
 function Statistics() {
   const { learningData } = useLearningProgress();
@@ -52,7 +53,13 @@ function Statistics() {
         </div>
       </div>
 
-      <LearningChart learningData={learningData} />
+      <div className={styles.analysisSection}>
+        <LearningAnalytics learningData={learningData} />
+      </div>
+
+      <div className={styles.chartSection}>
+        <LearningChart learningData={learningData} />
+      </div>
 
       <div className={styles.achievements}>
         <h2>획득한 배지</h2>

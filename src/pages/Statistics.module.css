@@ -37,12 +37,19 @@
   font-weight: bold;
 }
 
+.analysisSection {
+  margin-bottom: 3rem;
+}
+
+.chartSection {
+  margin-bottom: 3rem;
+}
+
 .achievements {
   background-color: white;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
 }
 
 .achievements h2 {
@@ -86,5 +93,9 @@
 
   .value {
     font-size: 1.5rem;
+  }
+
+  .badgeGrid {
+    grid-template-columns: 1fr;
   }
 } 
