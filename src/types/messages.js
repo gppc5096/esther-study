@@ -1,0 +1,9 @@
+export const MESSAGE_TYPES = {
+  STUDENT: 'STUDENT',
+  GRANDFATHER: 'GRANDFATHER'
+};
+
+export const MESSAGE_STATUS = {
+  UNREAD: 'UNREAD',
+  READ: 'READ'
+}; 

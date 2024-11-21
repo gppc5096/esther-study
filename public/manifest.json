@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "서현이의 수학나라",
+  "name": "서현이와 함께 떠나는 수학나라 여행",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,9 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#4299e1",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "description": "할아버지와 함께하는 즐거운 수학 공부",
+  "categories": ["education", "kids"]
 }

@@ -1,0 +1,116 @@
+.statistics {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.statistics h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.statCard h3 {
+  color: #4a5568;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.value {
+  color: #2d3748;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.recentActivity {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.recentActivity h2 {
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activityItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f7fafc;
+}
+
+.activityItem.correct {
+  border-left: 4px solid #48bb78;
+}
+
+.activityItem.incorrect {
+  border-left: 4px solid #f56565;
+}
+
+.activityTime {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.activityStatus {
+  font-weight: bold;
+}
+
+.encouragement {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.encouragement h2 {
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+}
+
+.message {
+  color: #4a5568;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.message p {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .statistics {
+    padding: 1rem;
+  }
+
+  .value {
+    font-size: 1.5rem;
+  }
+} 

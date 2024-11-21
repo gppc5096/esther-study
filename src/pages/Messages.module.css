@@ -1,0 +1,106 @@
+.messages {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.messages h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.messages h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.messageForm {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.messageInput {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.messageInput:focus {
+  outline: none;
+  border-color: #4299e1;
+}
+
+.sendButton {
+  background-color: #4299e1;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.sendButton:hover {
+  background-color: #3182ce;
+}
+
+.messageList {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.messageItem {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.studentMessage {
+  background-color: #ebf8ff;
+  margin-left: 2rem;
+}
+
+.grandfatherMessage {
+  background-color: #f0fff4;
+  margin-right: 2rem;
+}
+
+.messageHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.sender {
+  font-weight: bold;
+  color: #4a5568;
+}
+
+.timestamp {
+  color: #718096;
+}
+
+.messageContent {
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+.noMessages {
+  text-align: center;
+  color: #718096;
+  padding: 2rem;
+} 
