@@ -7,6 +7,8 @@ import { sampleProblems } from '../data/sampleProblems';
 import useLearningProgress from '../hooks/useLearningProgress';
 import useRewards from '../hooks/useRewards';
 import useSound from '../hooks/useSound';
+import LoadingSpinner from '../components/Common/LoadingSpinner';
+import ErrorMessage from '../components/Common/ErrorMessage';
 import styles from './Learning.module.css';
 
 const getBadge = (level) => {
@@ -29,25 +31,35 @@ function Learning() {
   const { learningData, updateProgress } = useLearningProgress();
   const { rewards, checkBadges, updatePerfectStreak, calculateLevel } = useRewards();
   const { playSound } = useSound();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const currentLevel = calculateLevel(learningData.totalScore);
 
-  const handleAnswer = useCallback((problemId, isCorrect, points) => {
-    updateProgress(problemId, isCorrect, points);
-    updatePerfectStreak(isCorrect);
-    
-    const earnedBadges = checkBadges(learningData);
-    if (earnedBadges.length > 0) {
-      setNewBadges(earnedBadges);
-      playSound('BADGE_EARNED');
-      setTimeout(() => setNewBadges([]), 3000);
-    }
+  const handleAnswer = useCallback(async (problemId, isCorrect, points) => {
+    try {
+      setIsLoading(true);
+      await updateProgress(problemId, isCorrect, points);
+      updatePerfectStreak(isCorrect);
+      
+      const earnedBadges = await checkBadges(learningData);
+      if (earnedBadges.length > 0) {
+        setNewBadges(earnedBadges);
+        playSound('BADGE_EARNED');
+        setTimeout(() => setNewBadges([]), 3000);
+      }
 
-    const prevLevel = calculateLevel(learningData.totalScore);
-    const newLevel = calculateLevel(learningData.totalScore + (isCorrect ? points : 0));
-    
-    if (newLevel.level > prevLevel.level) {
-      playSound('LEVEL_UP');
+      const prevLevel = calculateLevel(learningData.totalScore);
+      const newLevel = calculateLevel(learningData.totalScore + (isCorrect ? points : 0));
+      
+      if (newLevel.level > prevLevel.level) {
+        playSound('LEVEL_UP');
+      }
+    } catch (err) {
+      setError('답안 제출 중 오류가 발생했습니다.');
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   }, [learningData, updateProgress, updatePerfectStreak, checkBadges, calculateLevel, playSound]);
 
@@ -71,6 +83,10 @@ function Learning() {
   }, [getCurrentProblems, learningData.solvedProblems]);
 
   const progress = calculateProgress();
+
+  if (error) {
+    return <ErrorMessage message={error} onRetry={() => setError(null)} />;
+  }
 
   return (
     <div className={styles.learning}>
@@ -157,6 +173,8 @@ function Learning() {
           ))}
         </div>
       </div>
+      
+      {isLoading && <LoadingSpinner message="답안을 제출하는 중..." />}
     </div>
   );
 }

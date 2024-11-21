@@ -1,34 +1,27 @@
 import React from 'react';
-import { SUBJECT_CATEGORIES } from '../types/learning';
+import LearningChart from '../components/Statistics/LearningChart';
 import useLearningProgress from '../hooks/useLearningProgress';
+import useRewards from '../hooks/useRewards';
 import styles from './Statistics.module.css';
+import { calculateLevel } from '../utils/levelUtils';
 
 function Statistics() {
   const { learningData } = useLearningProgress();
+  const { rewards } = useRewards();
+  const currentLevel = calculateLevel(learningData.totalScore);
 
-  const calculateStats = () => {
-    const stats = {
-      totalProblems: 0,
-      correctProblems: 0,
-      subjectStats: Object.keys(SUBJECT_CATEGORIES).reduce((acc, subject) => {
-        acc[subject] = { total: 0, correct: 0 };
-        return acc;
-      }, {})
-    };
+  // 전체 통계 계산
+  const totalStats = Object.values(learningData.solvedProblems).reduce(
+    (acc, problem) => {
+      acc.total++;
+      if (problem.correct) acc.correct++;
+      return acc;
+    },
+    { total: 0, correct: 0 }
+  );
 
-    Object.entries(learningData.solvedProblems).forEach(([_, problem]) => {
-      stats.totalProblems++;
-      if (problem.correct) {
-        stats.correctProblems++;
-      }
-    });
-
-    return stats;
-  };
-
-  const stats = calculateStats();
-  const accuracy = stats.totalProblems > 0 
-    ? ((stats.correctProblems / stats.totalProblems) * 100).toFixed(1) 
+  const accuracy = totalStats.total > 0 
+    ? Math.round((totalStats.correct / totalStats.total) * 100) 
     : 0;
 
   return (
@@ -42,54 +35,37 @@ function Statistics() {
         </div>
 
         <div className={styles.statCard}>
+          <h3>현재 레벨</h3>
+          <p className={styles.value}>
+            {currentLevel.icon} {currentLevel.name}
+          </p>
+        </div>
+
+        <div className={styles.statCard}>
           <h3>연속 학습</h3>
           <p className={styles.value}>{learningData.streakDays}일</p>
         </div>
 
         <div className={styles.statCard}>
-          <h3>정답률</h3>
+          <h3>전체 정답률</h3>
           <p className={styles.value}>{accuracy}%</p>
         </div>
-
-        <div className={styles.statCard}>
-          <h3>푼 문제 수</h3>
-          <p className={styles.value}>{stats.totalProblems}개</p>
-        </div>
       </div>
 
-      <div className={styles.recentActivity}>
-        <h2>최근 학습 활동</h2>
-        <div className={styles.timeline}>
-          {Object.entries(learningData.solvedProblems)
-            .sort((a, b) => new Date(b[1].timestamp) - new Date(a[1].timestamp))
-            .slice(0, 5)
-            .map(([problemId, problem]) => (
-              <div 
-                key={problemId} 
-                className={`${styles.activityItem} ${problem.correct ? styles.correct : styles.incorrect}`}
-              >
-                <div className={styles.activityTime}>
-                  {new Date(problem.timestamp).toLocaleDateString()}
-                </div>
-                <div className={styles.activityStatus}>
-                  {problem.correct ? '✅ 정답' : '❌ 오답'}
-                </div>
+      <LearningChart learningData={learningData} />
+
+      <div className={styles.achievements}>
+        <h2>획득한 배지</h2>
+        <div className={styles.badgeGrid}>
+          {rewards.badges.map(badge => (
+            <div key={badge.id} className={styles.badge}>
+              <span className={styles.badgeIcon}>{badge.icon}</span>
+              <div className={styles.badgeInfo}>
+                <h4>{badge.name}</h4>
+                <p>{badge.description}</p>
               </div>
-            ))}
-        </div>
-      </div>
-
-      <div className={styles.encouragement}>
-        <h2>할아버지의 응원 메시지</h2>
-        <div className={styles.message}>
-          {learningData.streakDays > 0 ? (
-            <>
-              <p>서현아, {learningData.streakDays}일 연속으로 열심히 공부하고 있구나!</p>
-              <p>할아버지가 정말 자랑스럽다 ❤️</p>
-            </>
-          ) : (
-            <p>서현아, 오늘도 열심히 공부해보자!</p>
-          )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
