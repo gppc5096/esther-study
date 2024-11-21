@@ -1,13 +1,17 @@
 .layout {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  background: transparent;
 }
 
 .main {
   flex: 1;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-} 
+  padding-top: 64px;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* 필요한 경우 추가 스타일 */ 

@@ -18,11 +18,47 @@
 }
 
 .statCard {
-  background-color: white;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+.statCard:nth-child(1) {
+  background: linear-gradient(135deg, #e6fffa 0%, #fff 100%);
+}
+
+.statCard:nth-child(1):hover {
+  background: linear-gradient(135deg, #b2f5ea 0%, #e6fffa 100%);
+  transform: translateY(-5px);
+}
+
+.statCard:nth-child(2) {
+  background: linear-gradient(135deg, #ebf8ff 0%, #fff 100%);
+}
+
+.statCard:nth-child(2):hover {
+  background: linear-gradient(135deg, #bee3f8 0%, #ebf8ff 100%);
+  transform: translateY(-5px);
+}
+
+.statCard:nth-child(3) {
+  background: linear-gradient(135deg, #fef5ff 0%, #fff 100%);
+}
+
+.statCard:nth-child(3):hover {
+  background: linear-gradient(135deg, #e9d8fd 0%, #fef5ff 100%);
+  transform: translateY(-5px);
+}
+
+.statCard:nth-child(4) {
+  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+}
+
+.statCard:nth-child(4):hover {
+  background: linear-gradient(135deg, #fed7d7 0%, #fff5f5 100%);
+  transform: translateY(-5px);
 }
 
 .statCard h3 {
@@ -39,17 +75,43 @@
 
 .analysisSection {
   margin-bottom: 3rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #fff 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.analysisSection:hover {
+  background: linear-gradient(135deg, #e6f6fe 0%, #f8fafc 100%);
+  transform: translateY(-2px);
 }
 
 .chartSection {
   margin-bottom: 3rem;
+  background: linear-gradient(135deg, #f7fafc 0%, #fff5f7 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.chartSection:hover {
+  background: linear-gradient(135deg, #edf2f7 0%, #fed7e2 100%);
+  transform: translateY(-2px);
 }
 
 .achievements {
-  background-color: white;
+  background: linear-gradient(135deg, #f0fff4 0%, #fffff0 100%);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.achievements:hover {
+  background: linear-gradient(135deg, #c6f6d5 0%, #fefcbf 100%);
+  transform: translateY(-2px);
 }
 
 .achievements h2 {

@@ -1,13 +1,13 @@
 import React from 'react';
 import LearningChart from '../components/Statistics/LearningChart';
 import LearningAnalytics from '../components/Statistics/LearningAnalytics';
-import useLearningProgress from '../hooks/useLearningProgress';
+import { useLearning } from '../contexts/LearningContext';
 import useRewards from '../hooks/useRewards';
 import { calculateLevel } from '../utils/levelUtils';
 import styles from './Statistics.module.css';
 
 function Statistics() {
-  const { learningData } = useLearningProgress();
+  const { learningData } = useLearning();
   const { rewards } = useRewards();
   const currentLevel = calculateLevel(learningData.totalScore);
 

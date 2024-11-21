@@ -1,20 +1,50 @@
-.learning {
-  padding: 2rem;
+.container {
+  padding: clamp(1rem, 3vw, 2rem);
   max-width: 1000px;
   margin: 0 auto;
+  animation: fadeIn 0.8s ease-out;
 }
 
-.learning h1 {
+.header {
   color: #2c3e50;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.startContent {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.startContent p {
+  color: #4a5568;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  margin-bottom: 2rem;
+}
+
+.startButton {
+  background-color: #4299e1;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.startButton:hover {
+  background-color: #3182ce;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .progressInfo {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #fff 0%, #f7fafc 100%);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
@@ -22,7 +52,7 @@
 }
 
 .score {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 2vw, 1.2rem);
   color: #4299e1;
   font-weight: bold;
 }
@@ -32,93 +62,24 @@
   font-weight: bold;
 }
 
-.streak span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .progressSection {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
+  background: white;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 2rem 0;
 }
 
 .problemsContainer {
-  margin-top: 2rem;
-}
-
-.levelInfo {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.levelIcon {
-  font-size: 2.5rem;
-}
-
-.levelDetails h3 {
-  color: #2d3748;
-  margin-bottom: 0.2rem;
-}
-
-.levelDetails p {
-  color: #4a5568;
-  font-size: 0.9rem;
-}
-
-.badgeAlert {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 300px;
-}
-
-.rewardsSection {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
-}
-
-.rewardsSection h2 {
-  color: #2d3748;
-  margin-bottom: 1.5rem;
-}
-
-.badgeGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-top: 2rem;
 }
 
 @media (max-width: 768px) {
-  .learning {
-    padding: 1rem;
-  }
-
   .progressInfo {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
-  }
-
-  .badgeAlert {
-    left: 1rem;
-    right: 1rem;
-    top: 1rem;
   }
 } 

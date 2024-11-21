@@ -5,35 +5,37 @@ import styles from './CategorySelector.module.css';
 function CategorySelector({ selectedGrade, selectedCategory, onGradeChange, onCategoryChange }) {
   return (
     <div className={styles.selector}>
-      <div className={styles.gradeSelector}>
+      <div className={styles.gradeSection}>
         <h3>학년 선택</h3>
-        <div className={styles.buttons}>
+        <div className={styles.buttonGroup}>
           {Object.entries(GRADE_LEVELS).map(([key, value]) => (
             <button
               key={key}
-              className={`${styles.button} ${selectedGrade === key ? styles.active : ''}`}
-              onClick={() => onGradeChange(key)}
+              onClick={() => onGradeChange(value)}
+              className={`${styles.button} ${selectedGrade === value ? styles.selected : ''}`}
             >
-              {value}
+              {value === GRADE_LEVELS.GRADE_3 ? '3학년' : '4학년'}
             </button>
           ))}
         </div>
       </div>
 
-      <div className={styles.categorySelector}>
-        <h3>학습 주제 선택</h3>
-        <div className={styles.buttons}>
-          {Object.entries(SUBJECT_CATEGORIES).map(([key, value]) => (
-            <button
-              key={key}
-              className={`${styles.button} ${selectedCategory === key ? styles.active : ''}`}
-              onClick={() => onCategoryChange(key)}
-            >
-              {value}
-            </button>
-          ))}
+      {selectedGrade && (
+        <div className={styles.categorySection}>
+          <h3>주제 선택</h3>
+          <div className={styles.buttonGroup}>
+            {Object.entries(SUBJECT_CATEGORIES).map(([key, value]) => (
+              <button
+                key={key}
+                onClick={() => onCategoryChange(value)}
+                className={`${styles.button} ${selectedCategory === value ? styles.selected : ''}`}
+              >
+                {value}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -1,20 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faEnvelope, faTrophy, faFire, faChartBar } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faEnvelope, faTrophy, faFire, faChartBar, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import useMessages from '../hooks/useMessages';
-import useLearningProgress from '../hooks/useLearningProgress';
+import { useLearning } from '../contexts/LearningContext';
 import styles from './Home.module.css';
 
 function Home() {
   const { messages } = useMessages();
-  const { learningData } = useLearningProgress();
+  const { learningData } = useLearning();
   const recentMessages = messages.slice(0, 3);
 
   return (
     <div className={styles.home}>
       <section className={styles.welcome}>
-        <h1>서현이의 수학나라에 오신 것을 환영합니다!</h1>
+        <div className={styles.titleContainer}>
+          <FontAwesomeIcon icon={faHeart} className={`${styles.titleIcon} ${styles.leftIcon}`} />
+          <span className={styles.mainTitle}>수학 나라에 온 서현이를 환영해요!</span>
+          <FontAwesomeIcon icon={faStar} className={`${styles.titleIcon} ${styles.rightIcon}`} />
+        </div>
         <p>할아버지와 함께하는 즐거운 수학 공부</p>
       </section>
 
