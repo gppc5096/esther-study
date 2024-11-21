@@ -10,25 +10,21 @@ function Messages() {
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
     if (newMessage.trim()) {
-      addMessage(newMessage, MESSAGE_TYPES.STUDENT);
+      addMessage(newMessage.trim(), MESSAGE_TYPES.STUDENT);
       setNewMessage('');
     }
   }, [newMessage, addMessage]);
 
-  const handleChange = useCallback((e) => {
-    setNewMessage(e.target.value);
-  }, []);
-
   return (
     <div className={styles.messages}>
-      <h1>메시지</h1>
+      <h1>할아버지와의 대화</h1>
       
       <div className={styles.messageForm}>
         <h2>할아버지에게 메시지 보내기</h2>
         <form onSubmit={handleSubmit}>
           <textarea
             value={newMessage}
-            onChange={handleChange}
+            onChange={(e) => setNewMessage(e.target.value)}
             placeholder="할아버지에게 하고 싶은 말을 적어보세요..."
             className={styles.messageInput}
           />

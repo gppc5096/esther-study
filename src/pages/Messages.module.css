@@ -10,9 +10,6 @@
   text-align: center;
   margin-bottom: 2rem;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  opacity: 0;
-  animation: slideIn 0.8s ease-out forwards;
-  animation-delay: 0.3s;
 }
 
 .messages h2 {
@@ -22,15 +19,17 @@
 }
 
 .messageForm {
-  background-color: white;
+  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
   padding: clamp(1rem, 3vw, 2rem);
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: slideIn 0.8s ease-out forwards;
-  animation-delay: 0.5s;
+  transition: all 0.3s ease;
+}
+
+.messageForm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .messageInput {
@@ -42,7 +41,7 @@
   margin-bottom: 1rem;
   font-family: inherit;
   resize: vertical;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .messageInput:focus {
@@ -65,44 +64,31 @@
 .sendButton:hover {
   background-color: #3182ce;
   transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.sendButton:active {
-  transform: translateY(0);
 }
 
 .messageList {
-  background-color: white;
+  background: linear-gradient(135deg, #f0fff4 0%, #fff 100%);
   padding: clamp(1rem, 3vw, 2rem);
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  animation: scaleIn 0.8s ease-out forwards;
-  animation-delay: 0.7s;
 }
 
 .messageItem {
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
-  transition: transform 0.3s ease;
-  animation: fadeIn 0.5s ease-out;
-}
-
-.messageItem:hover {
-  transform: translateX(4px);
+  transition: all 0.3s ease;
 }
 
 .studentMessage {
   background-color: #ebf8ff;
-  margin-left: clamp(1rem, 5vw, 2rem);
+  margin-left: 2rem;
   border-left: 4px solid #4299e1;
 }
 
 .grandfatherMessage {
   background-color: #f0fff4;
-  margin-right: clamp(1rem, 5vw, 2rem);
+  margin-right: 2rem;
   border-left: 4px solid #48bb78;
 }
 
@@ -110,7 +96,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
-  font-size: 0.9rem;
 }
 
 .sender {
@@ -120,6 +105,7 @@
 
 .timestamp {
   color: #718096;
+  font-size: 0.9rem;
 }
 
 .messageContent {
@@ -131,25 +117,16 @@
   text-align: center;
   color: #718096;
   padding: 2rem;
-  animation: fadeIn 0.5s ease-out;
 }
 
 @media (max-width: 768px) {
   .messages {
     padding: 1rem;
   }
-
-  .messageForm {
-    padding: 1rem;
-  }
-
-  .messageList {
-    padding: 1rem;
-  }
-
+  
   .studentMessage,
   .grandfatherMessage {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 } 
