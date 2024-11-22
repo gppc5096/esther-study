@@ -18,30 +18,36 @@ function LearningAnalytics({ learningData }) {
       }, { total: 0, correct: 0, points: 0 });
   };
 
-  // 카테고리별 정답률 계산
-  const calculateCategoryAccuracy = () => {
-    const categoryStats = {};
+  // 카테고리별 정답률 계산 수정
+  const calculateCategoryStats = () => {
+    const stats = {};
     
+    // 각 카테고리 초기화
+    Object.values(SUBJECT_CATEGORIES).forEach(category => {
+      stats[category] = { total: 0, correct: 0 };
+    });
+
+    // 문제 데이터 집계
     Object.values(learningData.solvedProblems).forEach(problem => {
-      if (!categoryStats[problem.category]) {
-        categoryStats[problem.category] = { total: 0, correct: 0 };
-      }
-      categoryStats[problem.category].total++;
-      if (problem.correct) {
-        categoryStats[problem.category].correct++;
+      if (stats[problem.category]) {
+        stats[problem.category].total++;
+        if (problem.correct) {
+          stats[problem.category].correct++;
+        }
       }
     });
 
-    return Object.entries(categoryStats).map(([category, stats]) => ({
+    // 정답률 계산 및 결과 포맷팅
+    return Object.entries(stats).map(([category, data]) => ({
       category,
-      accuracy: stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0,
-      total: stats.total,
-      correct: stats.correct
+      accuracy: data.total > 0 ? Math.round((data.correct / data.total) * 100) : 0,
+      total: data.total,
+      correct: data.correct
     }));
   };
 
   const weeklyStats = calculateWeeklyStats();
-  const categoryStats = calculateCategoryAccuracy();
+  const categoryStats = calculateCategoryStats();
   const weeklyAccuracy = weeklyStats.total > 0 
     ? Math.round((weeklyStats.correct / weeklyStats.total) * 100) 
     : 0;
@@ -54,6 +60,16 @@ function LearningAnalytics({ learningData }) {
     [SUBJECT_CATEGORIES.GEOMETRY]: '도형',
     [SUBJECT_CATEGORIES.MEASUREMENT]: '측정',
     [SUBJECT_CATEGORIES.STATISTICS]: '통계'
+  };
+
+  // 카테고리별 색상 매핑
+  const categoryColors = {
+    [SUBJECT_CATEGORIES.ARITHMETIC]: '#FF6B6B',
+    [SUBJECT_CATEGORIES.FRACTION]: '#FFA94D',
+    [SUBJECT_CATEGORIES.DECIMAL]: '#FFD93D',
+    [SUBJECT_CATEGORIES.GEOMETRY]: '#9775FA',
+    [SUBJECT_CATEGORIES.MEASUREMENT]: '#FF8787',
+    [SUBJECT_CATEGORIES.STATISTICS]: '#748FFC'
   };
 
   return (
@@ -93,7 +109,10 @@ function LearningAnalytics({ learningData }) {
                 <div className={styles.progressBar}>
                   <div 
                     className={styles.progressFill}
-                    style={{ width: `${accuracy}%` }}
+                    style={{ 
+                      width: `${accuracy}%`,
+                      backgroundColor: categoryColors[category]
+                    }}
                   />
                 </div>
                 <div className={styles.detailStats}>
