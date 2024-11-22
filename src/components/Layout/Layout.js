@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import styles from './Layout.module.css';
 
 function Layout({ children }) {
@@ -9,6 +10,7 @@ function Layout({ children }) {
       <main className={styles.main}>
         {children}
       </main>
+      <Footer />
     </div>
   );
 }

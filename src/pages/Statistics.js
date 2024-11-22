@@ -1,5 +1,4 @@
 import React from 'react';
-import LearningChart from '../components/Statistics/LearningChart';
 import LearningAnalytics from '../components/Statistics/LearningAnalytics';
 import Badge from '../components/Common/Badge';
 import { useLearning } from '../contexts/LearningContext';
@@ -27,11 +26,14 @@ function Statistics() {
     ? Math.round((totalStats.correct / totalStats.total) * 100) 
     : 0;
 
-  // 뱃지 진행 상황 계산 함수 수정
+  // 표시할 뱃지 필터링 (특정 뱃지 제외)
+  const filteredBadges = Object.values(BADGE_TYPES).filter(badge => 
+    !['beginner', 'arithmetic_master', 'fraction_master'].includes(badge.id)
+  );
+
+  // 뱃지 진행 상황 계산 함수
   const calculateBadgeProgress = (badge) => {
     switch (badge.id) {
-      case 'beginner':
-        return totalStats.total > 0 ? 100 : 0;
       case 'explorer':
         return Math.min((totalStats.total / 50) * 100, 100);
       case 'master':
@@ -81,14 +83,13 @@ function Statistics() {
         <LearningAnalytics learningData={learningData} />
       </div>
 
-      <div className={styles.chartSection}>
-        <LearningChart learningData={learningData} />
-      </div>
-
       <div className={styles.achievements}>
-        <h2>획득한 뱃지</h2>
+        <h2>🌟 서현이의 특별한 도전 목표 🌟</h2>
+        <p className={styles.achievementsDescription}>
+          열심히 공부하면서 하나씩 도전해보세요!
+        </p>
         <div className={styles.badgeGrid}>
-          {Object.values(BADGE_TYPES).map(badge => {
+          {filteredBadges.map(badge => {
             const isLocked = !rewards.badges.some(b => b.id === badge.id);
             const progress = calculateBadgeProgress(badge);
             

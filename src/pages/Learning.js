@@ -129,9 +129,9 @@ function Learning() {
         <>
           <div className={styles.progressSection}>
             <Progress
-              value={currentProblemIndex + 1}
+              value={currentProblemIndex}
               total={currentProblems.length}
-              label={`진행도 (${currentProblemIndex + 1}/${currentProblems.length})`}
+              label={`진행도 (${currentProblemIndex}/${currentProblems.length})`}
             />
           </div>
 
