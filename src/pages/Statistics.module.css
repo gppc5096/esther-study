@@ -1,0 +1,186 @@
+.statistics {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.statistics h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.statCard:nth-child(1) {
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
+}
+
+.statCard:nth-child(2) {
+  background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+}
+
+.statCard:nth-child(3) {
+  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
+}
+
+.statCard:nth-child(4) {
+  background: linear-gradient(135deg, #fda4af 0%, #fb7185 100%);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.statCard:nth-child(1):hover {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+}
+
+.statCard:nth-child(2):hover {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+}
+
+.statCard:nth-child(3):hover {
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+}
+
+.statCard:nth-child(4):hover {
+  background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
+}
+
+.analysisSection {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  color: #1a237e;
+}
+
+.analysisSection:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #bbdefb 0%, #90caf9 100%);
+}
+
+.chartSection {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  color: #1b5e20;
+}
+
+.chartSection:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+}
+
+.achievements {
+  background: linear-gradient(135deg, #fff5f7 0%, #fff 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  border: 1px solid rgba(247, 250, 252, 0.8);
+}
+
+.achievements h2 {
+  color: #2d3748;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(120deg, #4299e1, #667eea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.achievementsDescription {
+  text-align: center;
+  color: #718096;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.badge {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15),
+              0 0 0 2px rgba(66, 153, 225, 0.3);
+}
+
+.badge:nth-child(1) .icon { color: #3b82f6; }
+.badge:nth-child(2) .icon { color: #22c55e; }
+.badge:nth-child(3) .icon { color: #8b5cf6; }
+.badge:nth-child(4) .icon { color: #f59e0b; }
+.badge:nth-child(5) .icon { color: #ec4899; }
+.badge:nth-child(6) .icon { color: #10b981; }
+.badge:nth-child(7) .icon { color: #6366f1; }
+.badge:nth-child(8) .icon { color: #ef4444; }
+.badge:nth-child(9) .icon { color: #8b5cf6; }
+
+.icon {
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.badge:hover .icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+@media (max-width: 768px) {
+  .statistics {
+    padding: 1rem;
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .badgeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .analysisSection,
+  .chartSection {
+    padding: 1.5rem;
+  }
+} 

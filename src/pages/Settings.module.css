@@ -1,0 +1,120 @@
+.settings {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.settings h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.settingsGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+.section {
+  background: linear-gradient(135deg, #fff, #f7fafc);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* 각 섹션별 배경색 설정 */
+.section:nth-child(1) {
+  background: linear-gradient(135deg, #ebf8ff, #fff);
+}
+
+.section:nth-child(2) {
+  background: linear-gradient(135deg, #f0fff4, #fff);
+}
+
+.section:nth-child(3) {
+  background: linear-gradient(135deg, #fff5f5, #fff);
+}
+
+.section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 초기화 섹션 스타일 */
+.resetSection {
+  text-align: center;
+}
+
+.resetSection h2 {
+  color: #e53e3e;
+  margin-bottom: 1rem;
+}
+
+.resetSection p {
+  color: #718096;
+  margin-bottom: 2rem;
+}
+
+.resetButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.resetButton {
+  background: linear-gradient(135deg, #fc8181, #e53e3e);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resetButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.resetButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(229, 62, 62, 0.3);
+  background: linear-gradient(135deg, #f56565, #c53030);
+}
+
+.resetButton:hover::before {
+  left: 100%;
+}
+
+.resetButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .settings {
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 1.5rem;
+  }
+
+  .resetButton {
+    width: 100%;
+    padding: 0.8rem;
+  }
+} 
