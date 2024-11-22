@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CategorySelector from '../components/Learning/CategorySelector';
 import Problem from '../components/Learning/Problem';
 import Progress from '../components/Common/Progress';
-import { sampleProblems } from '../data/sampleProblems';
+import { generateNewProblem } from '../utils/problemGenerator';
+import { DIFFICULTY_LEVELS } from '../types/problems';
 import { useLearning } from '../contexts/LearningContext';
 import useRewards from '../hooks/useRewards';
 import useSound from '../hooks/useSound';
@@ -11,41 +12,81 @@ import styles from './Learning.module.css';
 function Learning() {
   const [selectedGrade, setSelectedGrade] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [currentProblem, setCurrentProblem] = useState(null);
   const [isStarted, setIsStarted] = useState(false);
+  const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
+  const [currentProblems, setCurrentProblems] = useState([]);
+  
   const { learningData, updateProgress } = useLearning();
   const { checkBadges, updatePerfectStreak } = useRewards();
   const { playSound } = useSound();
+
+  // 난이도별로 5문제씩 생성하는 함수
+  const generateProblemsSet = useCallback(() => {
+    if (!selectedCategory) return [];
+
+    const problems = [];
+    const difficulties = [
+      ...Array(5).fill(DIFFICULTY_LEVELS.EASY),
+      ...Array(5).fill(DIFFICULTY_LEVELS.MEDIUM),
+      ...Array(5).fill(DIFFICULTY_LEVELS.HARD)
+    ];
+
+    difficulties.forEach(difficulty => {
+      const problem = generateNewProblem(selectedCategory, difficulty);
+      if (problem) problems.push(problem);
+    });
+
+    return problems;
+  }, [selectedCategory]);
+
+  // 카테고리 선택 시 문제 세트 생성
+  useEffect(() => {
+    if (selectedCategory && isStarted) {
+      const newProblems = generateProblemsSet();
+      setCurrentProblems(newProblems);
+      setCurrentProblemIndex(0);
+      if (newProblems.length > 0) {
+        setCurrentProblem(newProblems[0]);
+      }
+    }
+  }, [selectedCategory, isStarted, generateProblemsSet]);
 
   const handleStart = () => {
     setIsStarted(true);
     playSound('BUTTON_CLICK');
   };
 
-  const handleAnswer = (problemId, isCorrect, points) => {
-    updateProgress(problemId, isCorrect, points);
+  const handleAnswer = (isCorrect, points) => {
+    if (!currentProblem) return;
+
+    // 현재 문제의 결과 저장
+    updateProgress(currentProblem.id, isCorrect, points);
     updatePerfectStreak(isCorrect);
     
-    // 정답/오답 사운드 재생
     playSound(isCorrect ? 'CORRECT' : 'INCORRECT');
     
-    // 새로운 배지 확인
     const earnedBadges = checkBadges(learningData);
     if (earnedBadges.length > 0) {
       playSound('BADGE_EARNED');
     }
-  };
 
-  const getCurrentProblems = () => {
-    if (!selectedGrade || !selectedCategory) return [];
-    return sampleProblems[selectedGrade]?.[selectedCategory] || [];
-  };
-
-  const calculateProgress = () => {
-    const problems = getCurrentProblems();
-    if (!problems.length) return { solved: 0, total: 0 };
-
-    const solved = problems.filter(p => learningData.solvedProblems[p.id]).length;
-    return { solved, total: problems.length };
+    // 1.5초 후 다음 문제로 이동
+    setTimeout(() => {
+      const nextIndex = currentProblemIndex + 1;
+      if (nextIndex < currentProblems.length) {
+        setCurrentProblemIndex(nextIndex);
+        setCurrentProblem(currentProblems[nextIndex]);
+      } else {
+        // 모든 문제를 다 풀었을 때
+        alert('축하합니다! 모든 문제를 완료했습니다.');
+        // 새로운 문제 세트 생성
+        const newProblems = generateProblemsSet();
+        setCurrentProblems(newProblems);
+        setCurrentProblemIndex(0);
+        setCurrentProblem(newProblems[0]);
+      }
+    }, 1500);
   };
 
   if (!isStarted) {
@@ -84,25 +125,23 @@ function Learning() {
         onCategoryChange={setSelectedCategory}
       />
 
-      {selectedGrade && selectedCategory && (
+      {selectedGrade && selectedCategory && currentProblem && (
         <>
           <div className={styles.progressSection}>
             <Progress
-              value={calculateProgress().solved}
-              total={calculateProgress().total}
-              label="학습 진행도"
+              value={currentProblemIndex + 1}
+              total={currentProblems.length}
+              label={`진행도 (${currentProblemIndex + 1}/${currentProblems.length})`}
             />
           </div>
 
           <div className={styles.problemsContainer}>
-            {getCurrentProblems().map(problem => (
-              <Problem
-                key={problem.id}
-                problem={problem}
-                onAnswer={(isCorrect) => handleAnswer(problem.id, isCorrect, problem.points)}
-                progress={learningData.solvedProblems[problem.id]}
-              />
-            ))}
+            <Problem
+              key={currentProblem.id}
+              problem={currentProblem}
+              onAnswer={handleAnswer}
+              progress={learningData.solvedProblems[currentProblem.id]}
+            />
           </div>
         </>
       )}

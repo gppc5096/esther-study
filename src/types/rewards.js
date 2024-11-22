@@ -1,8 +1,67 @@
 export const BADGE_TYPES = {
-  STREAK: 'STREAK',
-  SCORE: 'SCORE',
-  PERFECT: 'PERFECT',
-  SPEED: 'SPEED'
+  BEGINNER: {
+    id: 'beginner',
+    name: '수학 여행 시작!',
+    icon: '🌱',
+    description: '첫 문제를 해결했어요',
+    condition: '첫 번째 문제 해결'
+  },
+  EXPLORER: {
+    id: 'explorer',
+    name: '열심히 공부하는 중',
+    icon: '🚀',
+    description: '50문제 해결 달성',
+    condition: '50문제 해결'
+  },
+  MASTER: {
+    id: 'master',
+    name: '수학 마스터',
+    icon: '👑',
+    description: '100문제 해결 달성',
+    condition: '100문제 해결'
+  },
+  PERSISTENT_3: {
+    id: 'persistent_3',
+    name: '3일 연속 학습',
+    icon: '🔥',
+    description: '3일 연속으로 학습했어요',
+    condition: '3일 연속 학습'
+  },
+  PERSISTENT_7: {
+    id: 'persistent_7',
+    name: '일주일 연속 학습',
+    icon: '🌟',
+    description: '7일 연속으로 학습했어요',
+    condition: '7일 연속 학습'
+  },
+  ACCURACY_80: {
+    id: 'accuracy_80',
+    name: '정확한 계산왕',
+    icon: '🎯',
+    description: '정답률 80% 달성',
+    condition: '정답률 80% 이상'
+  },
+  PERFECT_SOLVE: {
+    id: 'perfect_solve',
+    name: '완벽한 해결사',
+    icon: '💫',
+    description: '연속 5문제 만점 달성',
+    condition: '연속 5문제 만점'
+  },
+  ARITHMETIC_MASTER: {
+    id: 'arithmetic_master',
+    name: '사칙연산의 달인',
+    icon: '🧮',
+    description: '사칙연산 문제 30개 해결',
+    condition: '사칙연산 30문제 해결'
+  },
+  FRACTION_MASTER: {
+    id: 'fraction_master',
+    name: '분수의 달인',
+    icon: '📊',
+    description: '분수 문제 30개 해결',
+    condition: '분수 30문제 해결'
+  }
 };
 
 export const BADGES = {

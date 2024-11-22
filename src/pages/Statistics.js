@@ -1,9 +1,11 @@
 import React from 'react';
 import LearningChart from '../components/Statistics/LearningChart';
 import LearningAnalytics from '../components/Statistics/LearningAnalytics';
+import Badge from '../components/Common/Badge';
 import { useLearning } from '../contexts/LearningContext';
 import useRewards from '../hooks/useRewards';
 import { calculateLevel } from '../utils/levelUtils';
+import { BADGE_TYPES } from '../types/rewards';
 import styles from './Statistics.module.css';
 
 function Statistics() {
@@ -24,6 +26,28 @@ function Statistics() {
   const accuracy = totalStats.total > 0 
     ? Math.round((totalStats.correct / totalStats.total) * 100) 
     : 0;
+
+  // 뱃지 진행 상황 계산 함수
+  const calculateBadgeProgress = (badge) => {
+    switch (badge.id) {
+      case 'beginner':
+        return totalStats.total > 0 ? 100 : 0;
+      case 'explorer':
+        return Math.min((totalStats.total / 50) * 100, 100);
+      case 'master':
+        return Math.min((totalStats.total / 100) * 100, 100);
+      case 'persistent_3':
+        return Math.min((learningData.streakDays / 3) * 100, 100);
+      case 'persistent_7':
+        return Math.min((learningData.streakDays / 7) * 100, 100);
+      case 'accuracy_80':
+        return Math.min((accuracy / 80) * 100, 100);
+      case 'perfect_solve':
+        return Math.min((learningData.perfectStreak / 5) * 100, 100);
+      default:
+        return 0;
+    }
+  };
 
   return (
     <div className={styles.statistics}>
@@ -62,17 +86,21 @@ function Statistics() {
       </div>
 
       <div className={styles.achievements}>
-        <h2>획득한 배지</h2>
+        <h2>획득한 뱃지</h2>
         <div className={styles.badgeGrid}>
-          {rewards.badges.map(badge => (
-            <div key={badge.id} className={styles.badge}>
-              <span className={styles.badgeIcon}>{badge.icon}</span>
-              <div className={styles.badgeInfo}>
-                <h4>{badge.name}</h4>
-                <p>{badge.description}</p>
-              </div>
-            </div>
-          ))}
+          {Object.values(BADGE_TYPES).map(badge => {
+            const isLocked = !rewards.badges.some(b => b.id === badge.id);
+            const progress = calculateBadgeProgress(badge);
+            
+            return (
+              <Badge
+                key={badge.id}
+                badge={badge}
+                isLocked={isLocked}
+                progress={progress}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
