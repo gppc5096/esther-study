@@ -30,8 +30,7 @@ const Badge = memo(function Badge({
             {isLocked && progress > 0 && (
               <div className={styles.progressSection}>
                 <div className={styles.progressLabel}>
-                  <span>진행 상황:</span>
-                  <span>{progress}% 달성</span>
+                  <span>진행 상황: {progress}% 달성</span>
                 </div>
                 <div className={styles.progressBar}>
                   <div 

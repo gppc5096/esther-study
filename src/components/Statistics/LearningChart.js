@@ -1,105 +1,83 @@
 import React from 'react';
-import { Line, Bar } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js';
+import { SUBJECT_CATEGORIES } from '../../types/learning';
 import styles from './LearningChart.module.css';
 
-// Chart.js 등록
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
 function LearningChart({ learningData }) {
-  // 일일 학습 데이터 가공
-  const dailyProgress = Object.entries(learningData.solvedProblems)
-    .reduce((acc, [_, problem]) => {
-      const date = new Date(problem.timestamp).toLocaleDateString();
-      acc[date] = (acc[date] || 0) + 1;
-      return acc;
-    }, {});
-
-  // 카테고리별 정답률 데이터 가공
-  const categoryProgress = Object.entries(learningData.solvedProblems)
-    .reduce((acc, [_, problem]) => {
-      const category = problem.category || '기타';
-      if (!acc[category]) {
-        acc[category] = { total: 0, correct: 0 };
+  // 카테고리별 정답률 계산
+  const calculateCategoryAccuracy = () => {
+    const categoryStats = {};
+    
+    Object.values(learningData.solvedProblems).forEach(problem => {
+      if (!categoryStats[problem.category]) {
+        categoryStats[problem.category] = { total: 0, correct: 0 };
       }
-      acc[category].total++;
-      if (problem.correct) acc[category].correct++;
-      return acc;
-    }, {});
-
-  const lineChartData = {
-    labels: Object.keys(dailyProgress),
-    datasets: [
-      {
-        label: '일일 학습량',
-        data: Object.values(dailyProgress),
-        borderColor: '#4299e1',
-        backgroundColor: 'rgba(66, 153, 225, 0.2)',
-        tension: 0.4
+      categoryStats[problem.category].total++;
+      if (problem.correct) {
+        categoryStats[problem.category].correct++;
       }
-    ]
+    });
+
+    return Object.entries(categoryStats).map(([category, stats]) => ({
+      category,
+      accuracy: stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
+    }));
   };
 
-  const barChartData = {
-    labels: Object.keys(categoryProgress),
-    datasets: [
-      {
-        label: '정답률 (%)',
-        data: Object.values(categoryProgress).map(
-          ({ total, correct }) => (correct / total) * 100
-        ),
-        backgroundColor: '#48bb78',
-      }
-    ]
+  const categoryAccuracy = calculateCategoryAccuracy();
+
+  // 카테고리별 색상 매핑
+  const categoryColors = {
+    [SUBJECT_CATEGORIES.ARITHMETIC]: '#FF6B6B',  // 빨간색 계열
+    [SUBJECT_CATEGORIES.FRACTION]: '#FFA94D',    // 주황색 계열
+    [SUBJECT_CATEGORIES.DECIMAL]: '#FFD93D',     // 노란색 계열
+    [SUBJECT_CATEGORIES.GEOMETRY]: '#9775FA',    // 보라색 계열
+    [SUBJECT_CATEGORIES.MEASUREMENT]: '#FF8787',  // 분홍색 계열
+    [SUBJECT_CATEGORIES.STATISTICS]: '#748FFC'    // 파란색 계열
   };
 
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: '학습 통계'
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
+  // 카테고리 한글 이름 매핑
+  const categoryNames = {
+    [SUBJECT_CATEGORIES.ARITHMETIC]: '사칙연산',
+    [SUBJECT_CATEGORIES.FRACTION]: '분수',
+    [SUBJECT_CATEGORIES.DECIMAL]: '소수',
+    [SUBJECT_CATEGORIES.GEOMETRY]: '도형',
+    [SUBJECT_CATEGORIES.MEASUREMENT]: '측정',
+    [SUBJECT_CATEGORIES.STATISTICS]: '통계'
   };
 
   return (
     <div className={styles.chartContainer}>
+      <h3>카테고리별 정답률</h3>
       <div className={styles.chart}>
-        <h3>일일 학습 현황</h3>
-        <Line data={lineChartData} options={chartOptions} />
+        {categoryAccuracy.map(({ category, accuracy }) => (
+          <div key={category} className={styles.barContainer}>
+            <div className={styles.barLabel}>
+              {categoryNames[category]}
+            </div>
+            <div className={styles.barWrapper}>
+              <div 
+                className={styles.bar}
+                style={{ 
+                  width: `${accuracy}%`,
+                  backgroundColor: categoryColors[category]
+                }}
+              >
+                <span className={styles.barValue}>{accuracy}%</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-      
-      <div className={styles.chart}>
-        <h3>카테고리별 정답률</h3>
-        <Bar data={barChartData} options={chartOptions} />
+      <div className={styles.legend}>
+        {Object.entries(categoryNames).map(([category, name]) => (
+          <div key={category} className={styles.legendItem}>
+            <span 
+              className={styles.legendColor} 
+              style={{ backgroundColor: categoryColors[category] }}
+            />
+            <span className={styles.legendLabel}>{name}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

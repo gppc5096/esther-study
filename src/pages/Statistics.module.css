@@ -8,6 +8,7 @@
   color: #2c3e50;
   text-align: center;
   margin-bottom: 2rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
 }
 
 .summary {
@@ -20,131 +21,86 @@
 .statCard {
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .statCard:nth-child(1) {
-  background: linear-gradient(135deg, #93c5fd, #60a5fa);
-  color: white;
-}
-
-.statCard:nth-child(1):hover {
-  background: linear-gradient(135deg, #60a5fa, #3b82f6);
-  transform: translateY(-5px);
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
 }
 
 .statCard:nth-child(2) {
-  background: linear-gradient(135deg, #86efac, #4ade80);
-  color: white;
-}
-
-.statCard:nth-child(2):hover {
-  background: linear-gradient(135deg, #4ade80, #22c55e);
-  transform: translateY(-5px);
+  background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
 }
 
 .statCard:nth-child(3) {
-  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
-  color: white;
-}
-
-.statCard:nth-child(3):hover {
-  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-  transform: translateY(-5px);
+  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
 }
 
 .statCard:nth-child(4) {
-  background: linear-gradient(135deg, #fda4af, #fb7185);
-  color: white;
+  background: linear-gradient(135deg, #fda4af 0%, #fb7185 100%);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.statCard:nth-child(1):hover {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+}
+
+.statCard:nth-child(2):hover {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+}
+
+.statCard:nth-child(3):hover {
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
 }
 
 .statCard:nth-child(4):hover {
-  background: linear-gradient(135deg, #fb7185, #f43f5e);
-  transform: translateY(-5px);
-}
-
-.statCard h3 {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.value {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
 }
 
 .analysisSection {
-  margin-bottom: 3rem;
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 2rem;
   border-radius: 12px;
+  margin-bottom: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  color: #1a237e;
 }
 
-.analysisSection:nth-child(1) {
-  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
-  color: white;
-}
-
-.analysisSection:nth-child(1):hover {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+.analysisSection:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
-}
-
-.analysisSection:nth-child(2) {
-  background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
-  color: white;
-}
-
-.analysisSection:nth-child(2):hover {
-  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(34, 197, 94, 0.3);
-}
-
-.analysisSection:nth-child(3) {
-  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
-  color: white;
-}
-
-.analysisSection:nth-child(3):hover {
-  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #bbdefb 0%, #90caf9 100%);
 }
 
 .chartSection {
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #f7fafc 0%, #fff5f7 100%);
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  color: #1b5e20;
 }
 
 .chartSection:hover {
-  background: linear-gradient(135deg, #edf2f7 0%, #fed7e2 100%);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
 }
 
 .achievements {
-  background: linear-gradient(135deg, #f0fff4 0%, #fffff0 100%);
+  background: linear-gradient(135deg, #f0fff4 0%, #fff 100%);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
   margin-top: 2rem;
-}
-
-.achievements:hover {
-  background: linear-gradient(135deg, #c6f6d5 0%, #fefcbf 100%);
-  transform: translateY(-2px);
 }
 
 .achievements h2 {
@@ -178,35 +134,23 @@
               0 0 0 2px rgba(66, 153, 225, 0.3);
 }
 
-.badge:nth-child(1) .badgeIcon { color: #3b82f6; }
-.badge:nth-child(2) .badgeIcon { color: #22c55e; }
-.badge:nth-child(3) .badgeIcon { color: #8b5cf6; }
-.badge:nth-child(4) .badgeIcon { color: #f59e0b; }
-.badge:nth-child(5) .badgeIcon { color: #ec4899; }
-.badge:nth-child(6) .badgeIcon { color: #10b981; }
-.badge:nth-child(7) .badgeIcon { color: #6366f1; }
-.badge:nth-child(8) .badgeIcon { color: #ef4444; }
-.badge:nth-child(9) .badgeIcon { color: #8b5cf6; }
+.badge:nth-child(1) .icon { color: #3b82f6; }
+.badge:nth-child(2) .icon { color: #22c55e; }
+.badge:nth-child(3) .icon { color: #8b5cf6; }
+.badge:nth-child(4) .icon { color: #f59e0b; }
+.badge:nth-child(5) .icon { color: #ec4899; }
+.badge:nth-child(6) .icon { color: #10b981; }
+.badge:nth-child(7) .icon { color: #6366f1; }
+.badge:nth-child(8) .icon { color: #ef4444; }
+.badge:nth-child(9) .icon { color: #8b5cf6; }
 
-.badgeIcon {
+.icon {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
-  display: inline-block;
   transition: all 0.3s ease;
 }
 
-.badge:hover .badgeIcon {
-  transform: scale(1.2) rotate(5deg);
-}
-
-.badgeInfo h4 {
-  color: #2d3748;
-  margin-bottom: 0.2rem;
-}
-
-.badgeInfo p {
-  color: #718096;
-  font-size: 0.9rem;
+.badge:hover .icon {
+  transform: scale(1.2) rotate(10deg);
 }
 
 @media (max-width: 768px) {
@@ -214,15 +158,16 @@
     padding: 1rem;
   }
 
-  .value {
-    font-size: 1.5rem;
+  .summary {
+    grid-template-columns: 1fr;
   }
 
   .badgeGrid {
     grid-template-columns: 1fr;
   }
 
-  .badge {
-    padding: 1.2rem;
+  .analysisSection,
+  .chartSection {
+    padding: 1.5rem;
   }
 } 

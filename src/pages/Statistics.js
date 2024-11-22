@@ -27,7 +27,7 @@ function Statistics() {
     ? Math.round((totalStats.correct / totalStats.total) * 100) 
     : 0;
 
-  // 뱃지 진행 상황 계산 함수
+  // 뱃지 진행 상황 계산 함수 수정
   const calculateBadgeProgress = (badge) => {
     switch (badge.id) {
       case 'beginner':
@@ -37,9 +37,9 @@ function Statistics() {
       case 'master':
         return Math.min((totalStats.total / 100) * 100, 100);
       case 'persistent_3':
-        return Math.min((learningData.streakDays / 3) * 100, 100);
+        return Math.floor((learningData.streakDays / 3) * 100);
       case 'persistent_7':
-        return Math.min((learningData.streakDays / 7) * 100, 100);
+        return Math.floor((learningData.streakDays / 7) * 100);
       case 'accuracy_80':
         return Math.min((accuracy / 80) * 100, 100);
       case 'perfect_solve':
