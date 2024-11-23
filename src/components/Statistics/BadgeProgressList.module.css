@@ -1,17 +1,16 @@
 .container {
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
   padding: 2rem;
-  min-height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  background: linear-gradient(135deg, #F0F9FF 0%, #E6F6FF 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .title {
   color: #2d3748;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
   text-align: center;
   display: flex;
   align-items: center;
@@ -21,7 +20,7 @@
 }
 
 .titleIcon {
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-size: 1.8rem;
   animation: iconSpin 2s linear infinite;
 }
 
@@ -43,24 +42,33 @@
   }
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  width: 100%;
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 @media (max-width: 1024px) {
-  .container {
-    width: 95%;
-    padding: 1.5rem;
-    gap: 2.5rem;
+  .badgeGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
-    gap: 2rem;
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .badgeGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .title {
+    margin-bottom: 2rem;
   }
 } 

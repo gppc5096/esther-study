@@ -1,61 +1,51 @@
+import { useCallback } from 'react';
 import useLocalStorage from './useLocalStorage';
-import { BADGES, calculateLevel } from '../types/rewards';
+import { BADGE_TYPES, BADGE_REWARDS } from '../types/rewards';
 
-function useRewards() {
+const checkRequirements = (stats, requirements) => {
+  return Object.entries(requirements).every(([key, value]) => stats[key] >= value);
+};
+
+export function useRewards() {
   const [rewards, setRewards] = useLocalStorage('rewards', {
-    badges: [],
-    perfectStreak: 0,
-    lastCorrect: true
+    badges: {},
+    points: 0
   });
 
-  const checkBadges = (learningData) => {
+  const checkBadgeEligibility = useCallback((stats) => {
     const newBadges = [];
     
-    Object.values(BADGES).forEach(badgeGroup => {
-      badgeGroup.forEach(badge => {
-        if (!rewards.badges.includes(badge.id) && badge.condition(learningData)) {
-          newBadges.push(badge.id);
-        }
-      });
+    Object.entries(BADGE_TYPES).forEach(([badgeId, badge]) => {
+      if (!rewards.badges[badgeId] && checkRequirements(stats, badge.requirements)) {
+        newBadges.push(badgeId);
+      }
     });
+    
+    return newBadges;
+  }, [rewards.badges]);
 
-    if (newBadges.length > 0) {
+  const awardBadge = useCallback((badgeId) => {
+    if (BADGE_TYPES[badgeId]) {
       setRewards(prev => ({
         ...prev,
-        badges: [...prev.badges, ...newBadges]
+        badges: {
+          ...prev.badges,
+          [badgeId]: {
+            awarded: true,
+            awardedAt: new Date().toISOString()
+          }
+        },
+        points: prev.points + BADGE_REWARDS[badgeId].points
       }));
-      return newBadges;
+      return true;
     }
-
-    return [];
-  };
-
-  const updatePerfectStreak = (isCorrect) => {
-    setRewards(prev => ({
-      ...prev,
-      perfectStreak: isCorrect ? (prev.lastCorrect ? prev.perfectStreak + 1 : 1) : 0,
-      lastCorrect: isCorrect
-    }));
-  };
-
-  const getBadge = (badgeId) => {
-    for (const group of Object.values(BADGES)) {
-      const badge = group.find(b => b.id === badgeId);
-      if (badge) return badge;
-    }
-    return null;
-  };
-
-  const getEarnedBadges = () => {
-    return rewards.badges.map(getBadge).filter(Boolean);
-  };
+    return false;
+  }, [setRewards]);
 
   return {
     rewards,
-    checkBadges,
-    updatePerfectStreak,
-    getEarnedBadges,
-    calculateLevel
+    checkBadgeEligibility,
+    awardBadge
   };
 }
 

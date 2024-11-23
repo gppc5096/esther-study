@@ -16,8 +16,12 @@ function Messages() {
   }, [newMessage, addMessage]);
 
   return (
-    <div className={styles.messages}>
-      <h1>할아버지와의 대화</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>
+        <span className={styles.titleIcon}>💌</span>
+        할아버지와의 대화
+        <span className={styles.titleIcon}>💝</span>
+      </h1>
       
       <div className={styles.messageForm}>
         <h2>할아버지에게 메시지 보내기</h2>

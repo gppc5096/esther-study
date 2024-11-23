@@ -12,48 +12,36 @@
 
 .settingsGrid {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .section {
-  background: linear-gradient(135deg, #fff, #f7fafc);
+  background: white;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
-/* 각 섹션별 배경색 설정 */
-.section:nth-child(1) {
-  background: linear-gradient(135deg, #ebf8ff, #fff);
-}
-
-.section:nth-child(2) {
-  background: linear-gradient(135deg, #f0fff4, #fff);
-}
-
-.section:nth-child(3) {
-  background: linear-gradient(135deg, #fff5f5, #fff);
-}
-
 .section:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 초기화 섹션 스타일 */
-.resetSection {
+.section h2 {
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
+  font-weight: bold;
 }
 
-.resetSection h2 {
-  color: #e53e3e;
-  margin-bottom: 1rem;
-}
-
-.resetSection p {
+.section p {
   color: #718096;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .resetButtonContainer {
@@ -62,7 +50,7 @@
 }
 
 .resetButton {
-  background: linear-gradient(135deg, #fc8181, #e53e3e);
+  background: linear-gradient(135deg, #f56565, #e53e3e);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -70,43 +58,33 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.resetButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: 0.5s;
 }
 
 .resetButton:hover {
+  background: linear-gradient(135deg, #e53e3e, #c53030);
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(229, 62, 62, 0.3);
-  background: linear-gradient(135deg, #f56565, #c53030);
-}
-
-.resetButton:hover::before {
-  left: 100%;
 }
 
 .resetButton:active {
   transform: translateY(0);
 }
 
+@media (max-width: 1024px) {
+  .settingsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .settings {
+  .container {
+    width: 95%;
     padding: 1rem;
+  }
+
+  .settingsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .section {
@@ -117,4 +95,57 @@
     width: 100%;
     padding: 0.8rem;
   }
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  color: #2d3748;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  animation: titleBounce 1s ease-in-out infinite alternate;
+}
+
+.titleIcon {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  animation: iconSpin 2s linear infinite;
+}
+
+@keyframes titleBounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes iconSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.backupSection {
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+}
+
+.printSection {
+  background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+}
+
+.resetSection {
+  background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
 } 

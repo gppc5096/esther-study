@@ -1,35 +1,32 @@
-.messages {
-  padding: 2rem;
-  max-width: 800px;
+.container {
+  width: 90%;
   margin: 0 auto;
-  animation: fadeIn 0.8s ease-out;
+  padding: 2rem;
 }
 
-.messages h1 {
-  color: #2c3e50;
-  text-align: center;
+.title {
+  color: #2d3748;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: 2rem;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  animation: titleBounce 1s ease-in-out infinite alternate;
 }
 
-.messages h2 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+.titleIcon {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  animation: iconSpin 2s linear infinite;
 }
 
 .messageForm {
-  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
-  padding: clamp(1rem, 3vw, 2rem);
+  background: white;
+  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
-  transition: all 0.3s ease;
-}
-
-.messageForm:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .messageInput {
@@ -128,5 +125,23 @@
   .grandfatherMessage {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+}
+
+@keyframes titleBounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes iconSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 } 
