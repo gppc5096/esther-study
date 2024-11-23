@@ -1,71 +1,67 @@
-# Getting Started with Create React App
+# 수학 모험 (Math Adventure)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+초등학생을 위한 게이미피케이션 기반 수학 학습 애플리케이션입니다.
 
-## Available Scripts
+## 프로젝트 소개
 
-In the project directory, you can run:
+이 프로젝트는 초등학생들이 재미있게 수학을 학습할 수 있도록 설계된 웹 애플리케이션입니다. 게임 요소를 통해 학습 동기를 부여하고, 단계별 학습을 통해 수학 실력을 향상시킬 수 있습니다.
 
-### `npm start`
+### 주요 기능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 레벨별 수학 문제 제공
+- 학습 진도 추적 및 통계
+- 배지 보상 시스템
+- 학습 분석 리포트
+- 설정 및 백업 기능
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 기술 스택
 
-### `npm test`
+- React.js
+- Context API
+- CSS Modules
+- Local Storage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 시작하기
 
-### `npm run build`
+### 설치
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+저장소 클론
+git clone https://github.com/gppc5096/esther-study.git
+프로젝트 폴더로 이동
+cd esther-study
+의존성 설치
+npm install
+개발 서버 실행
+npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Git 설정
+원격 저장소 확인
+git remote -v
+변경사항 스테이징
+git add .
+커밋
+git commit -m "커밋 메시지"
+원격 저장소로 푸시
+git push origin main
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 프로젝트 구조
 
-### `npm run eject`
+src/
+├── components/     # 재사용 가능한 컴포넌트
+├── contexts/       # Context API 관련 파일
+├── hooks/          # 커스텀 훅
+├── pages/          # 페이지 컴포넌트
+├── types/          # 타입 정의
+└── utils/          # 유틸리티 함수
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 라이선스
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+이 프로젝트는 MIT 라이선스를 따릅니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 기여하기
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# esther-study
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
