@@ -8,7 +8,7 @@
 
 .main {
   flex: 1;
-  padding-top: 64px;
+  padding-top: 80px;
   padding-bottom: 2rem;
   position: relative;
   z-index: 1;
@@ -26,8 +26,15 @@
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .main {
-    padding-top: 56px;
+    padding-top: 100px;
     padding-bottom: 1.5rem;
+  }
+}
+
+/* 태블릿 크기에서의 여백 조정 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main {
+    padding-top: 90px;
   }
 }
 
